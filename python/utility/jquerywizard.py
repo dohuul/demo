@@ -1,11 +1,9 @@
 from playwright.sync_api import sync_playwright
 
-def init(browser_name):
+def init(browser_name):   
     
-    #start playwright
-    playwright = sync_playwright().start()
-
-    #headleass
+    playwright = sync_playwright().start()  
+    
     isHeadLess = False
 
     browser = ""
@@ -16,7 +14,13 @@ def init(browser_name):
     elif(browser_name == "firefox"):
         browser = playwright.firefox.launch(headless=isHeadLess)
     
+    #todo 
+    #add jquery reference
+    #set default paramters for each browser
+
     print("test")
     return browser
 
 
+def wait_for_web_element():
+    
