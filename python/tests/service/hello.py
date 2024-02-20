@@ -1,11 +1,20 @@
-number = 7
+import re
+from playwright.sync_api import Page, expect
 
-my_string = "this is my number in string format %d" %(number)
+def test_has_title(page: Page):
+    page.goto("https://playwright.dev/")
 
-print("%s" %(my_string));
+    # Expect a title "to contain" a substring.
+    expect(page).to_have_title(re.compile("Playwright"))
 
-print("test");
+def test_get_started_link(page: Page):
+    page.goto("https://playwright.dev/")
 
-file = open("C:\\Users\\qsbtt\\Downloads\\test.txt", "r");
-content = file.read();
-print(content);
+    # Click the get started link.
+    page.get_by_role("link", name="Get started").click()
+
+    # Expects page to have a heading with the name of Installation.
+    expect(page.get_by_role("heading", name="Installation")).to_be_visible()
+
+
+
