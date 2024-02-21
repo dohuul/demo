@@ -1,0 +1,14 @@
+{
+"targetEnvironment":"DEV",
+"environments":
+    {
+        "DEV":{
+            "gmail_url" : "",
+            "gmail_api_url":""
+        },  
+        "PRODUCTION":{
+            "gmail_url" : "",
+            "gmail_api_url":""
+        }
+    }
+}

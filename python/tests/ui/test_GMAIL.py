@@ -1,8 +1,22 @@
 import sys
 import time
+import os
 
 sys.path.insert(0, "python/utility")
 import playwright_utilities
+
+sys.path.insert(0, "python/configuration")
+import configuration_store
+
+
+
+
+def test_CONFIG_STORE_sanity():
+    print("hello")
+    dir_path = os.path.dirname(os.path.realpath(__file__))
+    print("path" + dir_path)
+    configuration_store.ConfigurationStore.get_credential("tests")
+    assert False
 
 def test_HELLO_sanity():
     assert 4 == 4
