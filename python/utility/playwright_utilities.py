@@ -22,5 +22,3 @@ def init(browser_name):
     return browser
 
 
-def wait_for_web_element():
-    
