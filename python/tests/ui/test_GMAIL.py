@@ -11,12 +11,10 @@ import configuration_store
 
 
 
-def test_CONFIG_STORE_sanity():
-    print("hello")
-    dir_path = os.path.dirname(os.path.realpath(__file__))
-    print("path" + dir_path)
-    configuration_store.ConfigurationStore.get_credential("tests")
-    assert False
+def test_CONFIG_STORE_Credentail_Get():    
+    credentials = configuration_store.ConfigurationStore.get_credential("TestID1")
+    assert credentials[0] == "test123" , "credential id should be test123"
+    assert credentials[1] == "test123pass", "credential pass should be test123pass"
 
 def test_HELLO_sanity():
     assert 4 == 4

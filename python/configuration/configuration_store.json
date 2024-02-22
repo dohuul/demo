@@ -2,13 +2,32 @@
 "targetEnvironment":"DEV",
 "environments":
     {
+        "default":{        
+          
+        },
         "DEV":{
-            "gmail_url" : "",
-            "gmail_api_url":""
-        },  
-        "PRODUCTION":{
-            "gmail_url" : "",
-            "gmail_api_url":""
+            "Product":{
+                "gmail" : {
+                    "url":"https://test.gmail.com"   
+                }
+            },
+            "Service": {
+                "pizza_service":{
+                    "url_live": "https://65d6d445f6967ba8e3bea881.mockapi.io/test/get_pizza",
+                    "url_nonlive":"https://65d6d445f6967ba8e3bea881.mockapi.io/test/get_pizza"
+                }
+            },
+            "TestData":{
+                "TestData1":"TestKey1=TestValue1|TestKey2|TestValue2"
+            }
+            ,
+            "Credential":{
+                "TestID1":{
+                    "ID" : "test123",
+                    "Pass": "test123pass"
+                }
+            }
+            
         }
     }
 }
