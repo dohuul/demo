@@ -7,8 +7,8 @@
         },
         "DEV":{
             "Product":{
-                "gmail" : {
-                    "url":"https://test.gmail.com"   
+                "gmail_ui" : {
+                    "url":"https://gmail.com"   
                 }
             },
             "Service": {

@@ -1,29 +1,19 @@
 import sys
 import time
-import os
 
+#import style #1 insert path into the directory where intepreter will search for module 
 sys.path.insert(0, "python/utility")
 import playwright_utilities
 
-sys.path.insert(0, "python/configuration")
-import configuration_store
-
-
-
-
-def test_CONFIG_STORE_Credentail_Get():    
-    credentials = configuration_store.ConfigurationStore.get_credential("TestID1")
-    assert credentials[0] == "test123" , "credential id should be test123"
-    assert credentials[1] == "test123pass", "credential pass should be test123pass"
-
-def test_HELLO_sanity():
-    assert 4 == 4
+#import style #2 absolute path
+import python.configuration.configuration_store as CONFIG
 
 # This test is designed to fail for demonstration purposes.
-def test_GMAIL_login_sanity():
+def test_GMAIL_login_sanity_PLAYWRIGHT():
+    gmail_ui_url = CONFIG.ConfigurationStore.get_product_url("gmail_ui")
     browser = playwright_utilities.init("chrome")
     page = browser.new_page()
-    page.goto("http://playwright.dev")
+    page.goto(gmail_ui_url)
     time.sleep(10)
     print(page.title())
     browser.close()

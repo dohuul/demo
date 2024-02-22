@@ -2,7 +2,6 @@ import json
 import python.utility.rest_utilities as RESTClient
 import python.configuration.configuration_store as CONFIG
 
-
 def test_Sanity_Get_Pizza():
     service_url = CONFIG.ConfigurationStore.get_service_url_live("pizza_service")
     response = RESTClient.RESTUtilities.execute_GET(service_url, None)
