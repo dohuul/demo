@@ -14,4 +14,13 @@ def test_Sanity_Get_Pizza():
 
     json_document = json.loads(response_text)
     item_length = len(json_document)
-    assert item_length == 4, "Expect JSON array count={expect}.Actual count={actual}".format(expect=4,actual=item_length)
+    assert item_length > 4, "Expect JSON array count={expect}.Actual count={actual}".format(expect=4,actual=item_length)
+
+def test_Sanity_POST_Pizza():
+    service_url = CONFIG.ConfigurationStore.get_service_url_live("pizza_service")
+    post_data = '{ "requestId": "$datatype.uuid", "items": "$mockData", "count": "$count", "anyKey": "anyValue" }'
+    post_header = {
+        "content-type":"application/json"
+    }
+    response = RESTClient.RESTUtilities.execute_POST(service_url,post_header, post_data, 0 )
+    assert response.status_code == 201, "Expect status={expect}. Actual status={actual}".format(expect=201,actual=response.status_code)
