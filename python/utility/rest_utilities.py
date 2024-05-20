@@ -1,5 +1,5 @@
 import requests
-use_fiddler_proxy_and_ignore_ssl_error = True
+use_fiddler_proxy_and_ignore_ssl_error = False
 class RESTUtilities:
 
     def execute_web_request(url, http_action, headers, data):     

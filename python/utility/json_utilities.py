@@ -6,4 +6,10 @@ class JSONUtilities:
 
     def is_valid_json(json_text):    
         return (json_text.startswith("{") and json_text.endswith("}")) or (json_text.startswith("[") and json_text.endswith("]"))
+    
+    def is_valid_array(json_text):
+        return json_text.startswith("[") and json_text.endswith("]")
+    
+    def is_valid_object(json_text):
+        return json_text.startswith("{") and json_text.endswith("}")
         
