@@ -1,3 +1,9 @@
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
+/.vs
+/selenium/javascript/node_modules
+/csharp/.vs
+/csharp/QA.AutomatedTests/.vs/QA.AutomatedTests
+/csharp/QA.AutomatedTests/QA.Common/obj
+/csharp/QA.AutomatedTests/QA.Common/bin/Debug/net8.0
