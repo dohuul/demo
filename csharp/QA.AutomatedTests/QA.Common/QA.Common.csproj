@@ -7,7 +7,11 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Artifacts\" />
+    <None Remove="Artifacts\ConfigurationStore.xlsx" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="Artifacts\ConfigurationStore.xlsx" />
   </ItemGroup>
 
   <ItemGroup>

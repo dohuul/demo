@@ -7,3 +7,5 @@ __pycache__/
 /csharp/QA.AutomatedTests/.vs/QA.AutomatedTests
 /csharp/QA.AutomatedTests/QA.Common/obj
 /csharp/QA.AutomatedTests/QA.Common/bin/Debug/net8.0
+/csharp/QA.AutomatedTests/.vs/ProjectEvaluation
+/csharp/QA.AutomatedTests/QA.Specflow.API/bin/Debug/net8.0

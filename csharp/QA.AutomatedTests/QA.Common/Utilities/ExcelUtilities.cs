@@ -18,7 +18,7 @@ namespace QA.Common.Utilities
     {
         public  static DataTable XlsxToDataTable(Stream str, string sheetName)
         {
-            XSSFWorkbook hssfworkbook = new XSSFWorkbook();
+            XSSFWorkbook hssfworkbook = new XSSFWorkbook(str);
             ISheet sheet = hssfworkbook.GetSheet(sheetName);
 
             DataTable dt = new DataTable();
