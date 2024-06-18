@@ -8,13 +8,23 @@ using System.Threading.Tasks;
 
 namespace QA.Common.Utilities
 {
-    public class ThreadUtilities
+    interface IThreadUtilities
+    {
+        static abstract void StartParallelTasksFor(int numberOfThreads,
+            Action<string> action,
+            List<string> source,
+            int sleepBetweenWaves,
+            string pathToLogFile,
+            bool shouldLogToConsole);
+    }
+
+    public class ThreadUtilities : IThreadUtilities
     {
         public static void StartParallelTasksFor(int numberOfThreads,
             Action<string> action,
             List<string> source,
-            string pathToLogFile = null,
-            int sleepBetweenWaves = 60000,
+            int sleepBetweenWaves,
+            string pathToLogFile,           
             bool shouldLogToConsole)
         {
 

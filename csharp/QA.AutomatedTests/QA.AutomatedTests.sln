@@ -5,6 +5,8 @@ VisualStudioVersion = 17.9.34902.65
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QA.Common", "QA.Common\QA.Common.csproj", "{F96128B5-3450-41BA-A63E-CFFEB535BF64}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QA.Specflow.API", "QA.Specflow.API\QA.Specflow.API.csproj", "{DE1DBA2E-F7F6-4194-8DA5-C4F9B5841F5F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{F96128B5-3450-41BA-A63E-CFFEB535BF64}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F96128B5-3450-41BA-A63E-CFFEB535BF64}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F96128B5-3450-41BA-A63E-CFFEB535BF64}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DE1DBA2E-F7F6-4194-8DA5-C4F9B5841F5F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DE1DBA2E-F7F6-4194-8DA5-C4F9B5841F5F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DE1DBA2E-F7F6-4194-8DA5-C4F9B5841F5F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DE1DBA2E-F7F6-4194-8DA5-C4F9B5841F5F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
