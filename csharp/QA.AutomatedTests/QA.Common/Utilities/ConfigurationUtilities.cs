@@ -1,25 +1,29 @@
-﻿using MathNet.Numerics.Statistics;
-using OpenQA.Selenium.DevTools.V123.Browser;
-using Org.BouncyCastle.Bcpg;
-using System;
-using System.Collections.Generic;
-using System.Configuration;
+﻿using Microsoft.Extensions.Configuration;
 using System.Data;
-using System.Diagnostics;
-using System.Drawing;
-using System.Linq;
-using System.Security.Cryptography.X509Certificates;
-using System.Text;
-using System.Threading.Tasks;
+using System.Reflection;
 using System.Web;
 
 namespace QA.Common.Utilities
 {
     public class ConfigurationUtilities
     {
-       
 
-     
+        //Net core use appsetings.json (Microsoft.Extensions.Configuration and Microsoft.Extensions.Configuration.Json)
+        //Net framework use app.config (System.Configuration.ConfigurationManager)
+        public static string GetCurrentTargetEnvironmentValue()
+        {   
+            //Get configuration value from Build
+            var assemblyConfigurationAttribute = typeof(ConfigurationStore_XlsxImplementation).Assembly.GetCustomAttribute<AssemblyConfigurationAttribute>();
+            var buildConfigurationName = assemblyConfigurationAttribute.Configuration;
+
+            //Add json config to memory
+            IConfiguration configuration = new ConfigurationBuilder().AddJsonFile($"appsettings.{buildConfigurationName}.json", false, false).Build();
+
+            //Retrieve value from config file
+            string currentEnv = configuration.GetSection("targetEnvironment").Value;
+
+            return currentEnv;
+        }
     }
 
     public class ConfigurationStore_XlsxImplementation
@@ -33,11 +37,12 @@ namespace QA.Common.Utilities
         private string _CurrentEnvironment = string.Empty;
 
         public ConfigurationStore_XlsxImplementation()
-        {
-            Stream xlsxStore = typeof(ConfigurationUtilities).Assembly.GetManifestResourceStream("QA.Common.Artifacts.ConfigurationStore.xlsx");
-            //_CurrentEnvironment = ConfigurationManager.AppSettings["targetEnvironment"].ToUpper();
-            _CurrentEnvironment = "RC";
+        {           
+            _CurrentEnvironment = ConfigurationUtilities.GetCurrentTargetEnvironmentValue();
 
+            Stream xlsxStore = typeof(ConfigurationUtilities).Assembly.GetManifestResourceStream("QA.Common.Artifacts.ConfigurationStore.xlsx");
+           
+            
             using (MemoryStream msA = new MemoryStream())
             using (MemoryStream msB = new MemoryStream())
             using (MemoryStream msC = new MemoryStream())

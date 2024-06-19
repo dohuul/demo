@@ -10,3 +10,15 @@ __pycache__/
 /csharp/QA.AutomatedTests/.vs/ProjectEvaluation
 /csharp/QA.AutomatedTests/QA.Specflow.API/bin/Debug/net8.0
 /csharp/QA.AutomatedTests/QA.Specflow.API/obj/Debug
+/csharp/QA.AutomatedTests/QA.Common/bin/PROD/net8.0
+/csharp/QA.AutomatedTests/QA.Specflow.API/bin
+/csharp/QA.AutomatedTests/QA.Common/bin/RC/net8.0
+/csharp/QA.AutomatedTests/QA.Specflow.API/obj/PROD/net8.0
+/csharp/QA.AutomatedTests/QA.Specflow.API/obj/RC/net8.0
+/csharp/QA.AutomatedTests/QA.Specflow.API/obj/Debug/net6.0/QA.Specflow.API.AssemblyInfo.cs
+/csharp/QA.AutomatedTests/QA.Specflow.API/obj/Debug/net6.0/QA.Specflow.API.AssemblyInfoInputs.cache
+/csharp/QA.AutomatedTests/QA.Specflow.API/obj/project.assets.json
+/csharp/QA.AutomatedTests/QA.Specflow.API/obj/project.nuget.cache
+/csharp/QA.AutomatedTests/QA.Specflow.API/obj/QA.Specflow.API.csproj.nuget.dgspec.json
+/csharp/QA.AutomatedTests/QA.Specflow.API/obj/QA.Specflow.API.csproj.nuget.g.props
+/csharp/QA.AutomatedTests/QA.Specflow.API/obj/QA.Specflow.API.csproj.nuget.g.targets
