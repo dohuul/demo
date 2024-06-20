@@ -15,6 +15,28 @@ let is_non_live = __ENV.isNonLive.toLocaleLowerCase();
 //define default time out for API calls
 let default_time_out = '60s';
 
+//test data by environment
+let test_data_by_environment = {
+    "rc":{
+        "e1" :{
+            "trackingid": 11111
+        },
+        "w2" :{
+            "trackingid": 22222
+        }
+    },
+    "prod":{
+        "e1" :{
+            "trackingid": 33333
+        },
+        "w2" :{
+            "trackingid": 44444
+        }
+    }
+
+}
+
+
 //define K6 option
 export const options = {
     vus:1,
@@ -30,7 +52,16 @@ export const options = {
 //define main test logic, K6 entry point
 export default function main(data){
 
+    Test_ODATA_Must_Be_Healthy_Before_Other_Test(cicd_env, zone_Code, cicd_region);
+}
 
+
+function Test_ODATA_Must_Be_Healthy_Before_Other_Test(cicd_env, zone_Code, cicd_Region){
+
+    return describe ('Test_ODATA_Must_Be_Healthy_Before_Other_Test', ()=>{
+        let trackingid = test_data_by_environment[cicd_env][zone_Code][cicd_Region];
+        let odata_response = Odata_Utilities.call_odata_GetTrackingByTrackingID(trackingid, cicd_Region, cicd_env);
+    })
 }
 
 
@@ -38,6 +69,44 @@ class Odata_Utilities {
 
     static call_odata_GetTrackingByTrackingID(trackingid, cicd_region, cicd_env){
         let test_name = 'call_odata_GetTrackingByTrackingID';
+        let sub_domain = cicd_env == 'qa' || cicd_env == 'rc' ? `${cicd_region}.${cicd_env}` : `${cicd_region}`;
+        let odata_url = `https://${sub_domain}.zonegw.fraudguard.firstam.cloud/odata/LoanData/DISSCO.GetTracking('${trackingid}')`;
+        let odata_retry_max_count = 2;
+        let odata_default_sleep_per_retry_in_second = 5;
+
+        let url = odata_url;
+        let is_test_pass = false;
+        let retry_count = 0;
+        let retry_max_count = odata_retry_max_count;
+
+        let k6_options = {
+            headers: {
+                'Content-Type': 'application/json',
+                'color' : cicd_color
+            },
+            timeout: default_time_out
+        }
+
+        let http_web_response;
+        while(retry_count < retry_max_count){
+            http_web_response = http.get(url, k6_options);
+            let should_retry = Odata_Utilities.is_odata_response_bad(http_web_response, 'odata GET call');
+            if(should_retry == false){
+                is_test_pass = true;
+                break;
+            }
+            retry_count++;
+            sleep(odata_default_sleep_per_retry_in_second);
+            console.log(`test_name:${test_name}| retry_count:${retry_count}|url:${url}|test_result:retrying|current_odata_status: ${http_web_response}`);
+        }
+        console.log(`test_name:${test_name}| retry_count:${retry_count}|url:${url}|test_result:${is_test_pass}`);
+
+        if(is_test_pass){
+            let odata_body = http_web_response.body;
+        }
+        else{
+            throw `Error when call_odata_GetTrackingByTrackingID|url: ${odata_url}`
+        }
     }
 
     static is_odata_response_bad(http_web_response, response_name){
