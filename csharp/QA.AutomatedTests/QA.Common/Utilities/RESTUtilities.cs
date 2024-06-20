@@ -16,10 +16,10 @@ namespace QA.Common.Utilities
         abstract static string ExtractStringBodyFromResponse(HttpResponseMessage webResponse);
     }
 
-    internal class RESTUtilities
+    public class RESTUtilities
     {
 
-        private static HttpResponseMessage ExecuteWebRequest(string httpMethod, string url, Stream requestBody, Dictionary<string, string> httpHeadersDictionary)
+        public static HttpResponseMessage ExecuteWebRequest(string httpMethod, string url, Stream requestBody, Dictionary<string, string> httpHeadersDictionary)
         {
             HttpClient httpClient = new HttpClient();
             HttpRequestMessage webRequest = new HttpRequestMessage(new HttpMethod(httpMethod), url);
@@ -27,21 +27,27 @@ namespace QA.Common.Utilities
 
             if(requestBody != null)
             {
-                using (HttpContent httpContent = new StreamContent(requestBody))
+                HttpContent httpContent = new StreamContent(requestBody);
+                if (httpHeadersDictionary.ContainsKey("content-type"))
                 {
-                    webRequest.Content = httpContent;
-                }                   
-            }
-        
-            if(httpHeadersDictionary != null)
-            {               
-                foreach (string httpHeaderName in httpHeadersDictionary.Keys)
-                {
-                    webRequest.Headers.Add(httpHeaderName, httpHeadersDictionary[httpHeaderName]);
+                    httpContent.Headers.ContentType = new MediaTypeHeaderValue(httpHeadersDictionary["content-type"]);
+                    httpHeadersDictionary.Remove("content-type");
                 }
+                
+                if (httpHeadersDictionary != null)
+                {
+                    foreach (string httpHeaderName in httpHeadersDictionary.Keys)
+                    {
+                        webRequest.Headers.Add(httpHeaderName, httpHeadersDictionary[httpHeaderName]);
+                    }
+                }
+
+                webRequest.Content = httpContent;
+                                
             }
          
-            webResponse = httpClient.Send(webRequest);        
+
+            webResponse = httpClient.Send(webRequest);
 
             return webResponse;
         }

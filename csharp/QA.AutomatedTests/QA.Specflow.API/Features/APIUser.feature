@@ -3,7 +3,7 @@
 A short summary of the feature
 
 @tag1
-Scenario: User API functional test
+Scenario: User API functional test - Resonse is not null
 	Given The name is test
 	When Make a POST request to the API
-	Then The response HTTP status is 200
+	Then The response is not null

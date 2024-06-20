@@ -6,44 +6,53 @@ using System.Text;
 using System.Threading.Tasks;
 using QA.Common;
 using QA.Common.Utilities;
+using QA.Common.WebService.JamesTestService.Client;
+using QA.Common.WebService.JamesTestService.Model;
 
 namespace QA.Specflow.API.StepDefinitions
 {
     [Binding]
     public  class APIUserStepDefinitions
     {
+        JamesTestService jamesServiceClient;
+        JamesTestServiceRequest jamesServiceRequest;
+        JamesTestServiceResponse jamesServiceResponse;
+
         [BeforeScenario]
         public void BeforeScenario()
         {
+
+            jamesServiceClient = new JamesTestService();
            
-            ConfigurationStore_XlsxImplementation configuration = new ConfigurationStore_XlsxImplementation();
-            string url = configuration.GetProductUrl("JamesMockService");
+       
         }
 
         [Given("The name is test")]
         public void GivenTheNameIs()
         {
-            //TODO: implement arrange (precondition) logic
-            // For storing and retrieving scenario-specific data see https://go.specflow.org/doc-sharingdata
-            // To use the multiline text or the table argument of the scenario,
-            // additional string/Table parameters can be defined on the step definition
-            // method. 
-
-            throw new PendingStepException();
+            jamesServiceRequest = new JamesTestServiceRequest
+            {
+                id = "1",
+                name = "test"
+            };
+           
         }
 
         [When("Make a POST request to the API")]
         public void MakePOSTrequestToAPI()
         {
             //TODO: implement act (action) logic
-
-            throw new PendingStepException();
+            string responseString = jamesServiceClient.PostToService(jamesServiceRequest);
+            Byte[] bytes = Encoding.UTF8.GetBytes(responseString);
+            Stream responseStream = new MemoryStream(bytes);
+            jamesServiceResponse = SerializationUtilities.DeserializeJson<JamesTestServiceResponse>(responseStream);
+                   
         }
 
-        [Then("The response HTTP status is (.*)")]
-        public void ThenTheResponseHttpStatusIs(int httpStatus)
-        { 
-        
+        [Then("The response is not null")]
+        public void ThenTheResponseIsNotNul()
+        {
+            Assert.IsTrue(jamesServiceResponse != null);
         }
 
     }

@@ -1,5 +1,6 @@
 ﻿using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
+using Org.BouncyCastle.Crypto.Paddings;
 using QA.Common.Models;
 using System.Collections.Concurrent;
 using System.Globalization;
@@ -116,16 +117,26 @@ namespace QA.Common.Utilities
         {
             requestStream.Position = 0L;
             JsonReader reader = new JsonTextReader(new StreamReader(requestStream));
-            return (T)_jsonSerializer.Deserialize(reader);
+            return _jsonSerializer.Deserialize<T>(reader);
         }
 
         public static T DeserializeJson<T>(StreamReader requestStream)
         {          
             return (T)_jsonSerializer.Deserialize(requestStream, typeof(T));
         }
+
+        public static T DeserializeJson<T>(string responseString, bool isBase64Encoded)
+        {
+            if(isBase64Encoded)
+            {
+                byte[] bytes = Convert.FromBase64String(responseString);
+            }
+            using JsonTextReader reader = new JsonTextReader(new StringReader(responseString));
+            return (T)_jsonSerializer.Deserialize(reader, typeof(T));
+        }
         #endregion
 
-       
+
         public static string SerializeContent<T> (string contentType, T content)
         {
             FileType fileType = GetContentType(contentType);

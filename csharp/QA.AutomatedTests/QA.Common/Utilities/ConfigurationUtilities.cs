@@ -7,6 +7,13 @@ namespace QA.Common.Utilities
 {
     public class ConfigurationUtilities
     {
+        private static ConfigurationStore_XlsxImplementation _configurationStore = new ConfigurationStore_XlsxImplementation();
+
+        public static string GetProductUrl(string productName)
+        {
+            return _configurationStore.GetProductUrl(productName);
+        }
+
 
         //Net core use appsetings.json (Microsoft.Extensions.Configuration and Microsoft.Extensions.Configuration.Json)
         //Net framework use app.config (System.Configuration.ConfigurationManager)
