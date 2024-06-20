@@ -16,6 +16,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="AWSSDK.DynamoDBv2" Version="3.7.303.25" />
+    <PackageReference Include="AWSSDK.Lambda" Version="3.7.305.40" />
+    <PackageReference Include="AWSSDK.S3" Version="3.7.309.6" />
     <PackageReference Include="itext7" Version="8.0.4" />
     <PackageReference Include="Microsoft.Extensions.Configuration" Version="8.0.0" />
     <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="8.0.0" />
