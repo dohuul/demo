@@ -4,7 +4,6 @@ export const options = {
   vus: 1,
   iteration: 1,
   duration: 1,
-  stages: []
 }
 
 //define script parameters: environment, number of threads, test type=light or heavy, duration, spike test 
@@ -17,7 +16,8 @@ export const options = {
 
 export default function () {
 
-    let url = '';
+  group
+    let url = 'https://google.com';
     let data = '';
 
 }
