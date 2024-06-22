@@ -33,6 +33,22 @@ const is_nonlive = __ENV.is_nonlive;
 const is_spike_test = __ENV.is_spike;
 let http_timeout = '60s';
 
+/* input validation and throw error to user */
+if(thread === undefined || isNaN(thread)){
+    throw `error: unsupported value for thread parameter. Thread parameter should be a number`.
+}
+
+let nThread = Number(thread);
+if(!Number.isInteger(nThread)){
+    throw `error: unsupported value for thread parameter. Thread parameter should be an integer`;
+}
+
+let iThread = parseInt(nThread);
+if(iThread < 1 || iThread > 100){
+    throw `error: unsupported value for thread parameter. Thread parameter should be between 1 and 100`;
+}
+
+
 /*service name , version, gateway and base url */
 let gateway_name = 'api_gateway';
 const version = 'v2';
