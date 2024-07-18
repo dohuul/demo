@@ -23,3 +23,5 @@ __pycache__/
 /csharp/QA.AutomatedTests/QA.Specflow.API/obj/QA.Specflow.API.csproj.nuget.g.props
 /csharp/QA.AutomatedTests/QA.Specflow.API/obj/QA.Specflow.API.csproj.nuget.g.targets
 k6/k6.exe
+/csharp/QA.AutomatedTests/QA.Specflow.UI/obj
+/csharp/QA.AutomatedTests/QA.Specflow.UI/bin/Debug/net8.0

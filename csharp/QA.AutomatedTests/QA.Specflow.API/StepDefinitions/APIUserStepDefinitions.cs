@@ -9,6 +9,8 @@ using QA.Common.Utilities;
 using QA.Common.WebService.JamesTestService.Client;
 using QA.Common.WebService.JamesTestService.Model;
 
+using TechTalk.SpecFlow;
+
 namespace QA.Specflow.API.StepDefinitions
 {
     [Binding]
